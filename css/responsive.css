@@ -1,0 +1,176 @@
+@media (max-width: 980px) {
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .steps {
+    max-width: 620px;
+  }
+
+  .studio {
+    grid-template-columns: 1fr;
+  }
+
+  .canvas-shell {
+    width: min(100%, 590px);
+  }
+
+  .controls-panel {
+    min-height: 0;
+  }
+
+  .empty-controls {
+    min-height: 180px;
+  }
+}
+
+@media (max-width: 650px) {
+  .topbar,
+  main,
+  footer {
+    width: min(100% - 24px, 1180px);
+  }
+
+  .topbar {
+    min-height: 68px;
+  }
+
+  .privacy-pill {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    background: var(--green);
+    box-shadow: 0 0 13px rgba(150, 250, 108, .5);
+    font-size: 0;
+  }
+
+  .privacy-pill > span {
+    display: none;
+  }
+
+  main {
+    padding-top: 40px;
+  }
+
+  .intro {
+    margin-bottom: 25px;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 13vw, 3.6rem);
+  }
+
+  .intro-copy > p:last-child {
+    font-size: 0.96rem;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .steps li {
+    display: grid;
+    min-height: auto;
+    grid-template-columns: 40px 1fr;
+    padding: 13px;
+  }
+
+  .step-icon {
+    grid-row: span 2;
+    margin: 0;
+  }
+
+  .steps strong,
+  .steps small {
+    align-self: center;
+  }
+
+  .studio {
+    gap: 12px;
+    padding: 7px;
+    border-radius: 24px;
+  }
+
+  .preview-column,
+  .controls-panel {
+    padding: 15px;
+    border-radius: 20px;
+  }
+
+  .quality-badge {
+    display: none;
+  }
+
+  .canvas-shell {
+    border-radius: 18px;
+  }
+
+  .upload-state {
+    padding: 18px;
+  }
+
+  .upload-icon {
+    width: 58px;
+    height: 58px;
+    margin-bottom: 12px;
+  }
+
+  .upload-state p {
+    margin-bottom: 14px;
+    font-size: 0.82rem;
+  }
+
+  .upload-state small {
+    display: none;
+  }
+
+  .quick-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .split-control,
+  .two-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .emoji-row {
+    justify-content: space-between;
+  }
+
+  .emoji-row button {
+    width: 14.5%;
+  }
+
+  .outline-options {
+    grid-template-columns: 1fr;
+  }
+
+  .outline-options > input {
+    grid-column: 1;
+    margin-top: -10px;
+  }
+
+  footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .toast {
+    right: 16px;
+    bottom: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,252 @@
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 82px;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: var(--text);
+  font-size: 1.26rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  text-decoration: none;
+}
+
+.brand > span:last-child span {
+  color: var(--green);
+}
+
+.brand-mark {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--green);
+  box-shadow: 0 0 28px rgba(150, 250, 108, 0.2);
+}
+
+.brand-mark svg {
+  width: 30px;
+  fill: #0b1018;
+}
+
+.brand-mark .brand-fold {
+  fill: var(--purple);
+}
+
+.privacy-pill,
+.quality-badge,
+.live-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: #b8bfce;
+  background: rgba(255, 255, 255, 0.035);
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.privacy-pill {
+  padding: 9px 13px;
+}
+
+.privacy-pill > span,
+.live-dot > span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 10px var(--green);
+}
+
+main {
+  padding: 60px 0 28px;
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  align-items: end;
+  gap: 58px;
+  margin-bottom: 38px;
+}
+
+.eyebrow,
+.section-kicker {
+  color: var(--green);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+}
+
+.eyebrow span {
+  margin-right: 7px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  max-width: 650px;
+  margin-bottom: 14px;
+  font-size: clamp(2.45rem, 5.4vw, 4.65rem);
+  line-height: 0.98;
+  letter-spacing: -0.062em;
+}
+
+h1 span {
+  color: var(--green);
+  text-shadow: 0 0 42px rgba(150, 250, 108, 0.18);
+}
+
+.intro-copy > p:last-child {
+  max-width: 570px;
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.steps li {
+  position: relative;
+  min-height: 138px;
+  padding: 18px 13px 15px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018));
+}
+
+.step-number {
+  position: absolute;
+  top: 12px;
+  right: 13px;
+  color: rgba(255, 255, 255, 0.18);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.7rem;
+}
+
+.step-icon {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 14px;
+  place-items: center;
+  border-radius: 10px;
+  color: #090d14;
+  background: var(--green);
+  font-weight: 900;
+}
+
+.steps li:nth-child(2) .step-icon {
+  color: #fff;
+  background: var(--purple);
+}
+
+.steps li:nth-child(3) .step-icon {
+  color: #fff;
+  background: var(--blue);
+}
+
+.steps strong,
+.steps small {
+  display: block;
+}
+
+.steps strong {
+  font-size: 0.86rem;
+}
+
+.steps small {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 0.68rem;
+  white-space: nowrap;
+}
+
+.studio {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(370px, 0.92fr);
+  gap: 18px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 32px;
+  background: rgba(10, 13, 23, 0.66);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(20px);
+}
+
+.preview-column,
+.controls-panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.preview-column {
+  padding: 22px;
+}
+
+.section-heading,
+.panel-heading,
+.format-row,
+.switch-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.section-heading,
+.panel-heading {
+  margin-bottom: 17px;
+}
+
+.section-kicker {
+  display: block;
+  margin-bottom: 3px;
+  color: #7d8497;
+  font-size: 0.66rem;
+}
+
+.section-heading h2,
+.panel-heading h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  letter-spacing: -0.03em;
+}
+
+.quality-badge,
+.live-dot {
+  padding: 7px 10px;
+}
+
+.live-dot {
+  color: var(--green);
+}
+

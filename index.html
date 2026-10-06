@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Crie figurinhas para WhatsApp direto no navegador, sem cadastro.">
+  <meta name="theme-color" content="#080b14">
+  <title>StickerLab — Crie figurinhas para WhatsApp</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%2394f967'/%3E%3Cpath d='M18 17h28v20c0 8-7 14-15 14H18z' fill='%23090d16'/%3E%3Cpath d='M32 51c7-2 12-7 14-14H32z' fill='%237865ff'/%3E%3Ccircle cx='27' cy='29' r='3' fill='%2394f967'/%3E%3Ccircle cx='38' cy='29' r='3' fill='%2394f967'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="StickerLab — início">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 48 48" role="img">
+          <path d="M11 8h26v19c0 8-6 13-14 13H11V8Z"></path>
+          <path class="brand-fold" d="M24 40c7-2 11-6 13-13H24v13Z"></path>
+          <circle cx="20" cy="21" r="2.3"></circle>
+          <circle cx="29" cy="21" r="2.3"></circle>
+        </svg>
+      </span>
+      <span>Sticker<span>Lab</span></span>
+    </a>
+    <span class="privacy-pill"><span></span> Tudo acontece no seu navegador</span>
+  </header>
+
+  <main id="inicio">
+    <section class="intro" aria-labelledby="page-title">
+      <div class="intro-copy">
+        <p class="eyebrow"><span>✦</span> Estúdio de figurinhas</p>
+        <h1 id="page-title">Transforme suas fotos em <span>figurinhas</span></h1>
+        <p>Envie uma imagem, personalize e baixe sua figurinha em poucos segundos.</p>
+      </div>
+
+      <ol class="steps" aria-label="Como usar">
+        <li>
+          <span class="step-number">01</span>
+          <span class="step-icon" aria-hidden="true">↥</span>
+          <strong>Envie a foto</strong>
+          <small>JPG, PNG ou WEBP</small>
+        </li>
+        <li>
+          <span class="step-number">02</span>
+          <span class="step-icon" aria-hidden="true">✦</span>
+          <strong>Personalize</strong>
+          <small>Texto, emoji e efeitos</small>
+        </li>
+        <li>
+          <span class="step-number">03</span>
+          <span class="step-icon" aria-hidden="true">↓</span>
+          <strong>Baixe</strong>
+          <small>Pronto para compartilhar</small>
+        </li>
+      </ol>
+    </section>
+
+    <section class="studio" aria-label="Editor de figurinha">
+      <div class="preview-column">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">Prévia ao vivo</span>
+            <h2>Sua figurinha</h2>
+          </div>
+          <span class="quality-badge">1080 × 1080</span>
+        </div>
+
+        <div class="canvas-shell" id="dropZone">
+          <div class="checkerboard" aria-hidden="true"></div>
+          <canvas id="stickerCanvas" width="1080" height="1080" aria-label="Prévia da sua figurinha"></canvas>
+
+          <div class="upload-state" id="uploadState">
+            <div class="upload-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64">
+                <path d="M17 16h30a7 7 0 0 1 7 7v24a7 7 0 0 1-7 7H17a7 7 0 0 1-7-7V23a7 7 0 0 1 7-7Z"></path>
+                <path d="m16 45 12-12 8 8 5-5 8 9"></path>
+                <circle cx="42" cy="27" r="4"></circle>
+              </svg>
+            </div>
+            <h3>Solte sua foto aqui</h3>
+            <p>ou clique para escolher uma imagem</p>
+            <button class="primary-button compact" id="chooseImageButton" type="button">
+              <span aria-hidden="true">＋</span> Escolher imagem
+            </button>
+            <small>JPG, JPEG, PNG ou WEBP • até 15 MB</small>
+          </div>
+
+          <div class="drop-hint" id="dropHint" aria-hidden="true">
+            <span>↓</span>
+            <strong>Solte para criar</strong>
+          </div>
+        </div>
+
+        <input id="imageInput" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+
+        <div class="quick-actions" aria-label="Ações rápidas">
+          <button id="addTextButton" class="action-button" type="button" disabled>
+            <span aria-hidden="true">T</span> Adicionar texto
+          </button>
+          <button id="customizeButton" class="action-button" type="button" disabled>
+            <span aria-hidden="true">✦</span> Personalizar
+          </button>
+          <button id="undoButton" class="action-button subtle" type="button" disabled>
+            <span aria-hidden="true">↶</span> Desfazer
+          </button>
+          <button id="newStickerButton" class="action-button subtle" type="button" disabled>
+            <span aria-hidden="true">＋</span> Nova figurinha
+          </button>
+        </div>
+      </div>
+
+      <aside class="controls-panel" id="controlsPanel" aria-label="Personalização">
+        <div class="panel-heading">
+          <div>
+            <span class="section-kicker">Ferramentas</span>
+            <h2>Personalizar</h2>
+          </div>
+          <span class="live-dot"><span></span> Ao vivo</span>
+        </div>
+
+        <div class="empty-controls" id="emptyControls">
+          <div aria-hidden="true">✦</div>
+          <p>Envie uma foto para liberar as ferramentas de edição.</p>
+        </div>
+
+        <div class="control-content" id="controlContent" hidden>
+          <div class="control-group">
+            <label for="textInput">Texto da figurinha</label>
+            <div class="text-input-wrap">
+              <input id="textInput" type="text" maxlength="52" placeholder="Digite uma frase ou adicione emojis">
+              <span id="charCount">0/52</span>
+            </div>
+
+            <div class="emoji-row" aria-label="Emojis rápidos">
+              <button type="button" data-emoji="😂" aria-label="Adicionar emoji rindo">😂</button>
+              <button type="button" data-emoji="😍" aria-label="Adicionar emoji apaixonado">😍</button>
+              <button type="button" data-emoji="🔥" aria-label="Adicionar emoji fogo">🔥</button>
+              <button type="button" data-emoji="✨" aria-label="Adicionar emoji brilho">✨</button>
+              <button type="button" data-emoji="❤️" aria-label="Adicionar emoji coração">❤️</button>
+              <button type="button" data-emoji="😎" aria-label="Adicionar emoji óculos escuros">😎</button>
+            </div>
+          </div>
+
+          <div class="control-group split-control">
+            <div>
+              <span class="field-label">Posição</span>
+              <div class="segmented" role="group" aria-label="Posição do texto">
+                <button type="button" class="is-active" data-position="top">Superior</button>
+                <button type="button" data-position="bottom">Inferior</button>
+              </div>
+            </div>
+            <div>
+              <label for="fontSize">Tamanho <output id="fontSizeValue">84</output></label>
+              <input id="fontSize" type="range" min="44" max="156" value="84">
+            </div>
+          </div>
+
+          <div class="control-group two-columns">
+            <div>
+              <label for="fontFamily">Fonte</label>
+              <select id="fontFamily">
+                <option value="Impact, Haettenschweiler, sans-serif">Impacto</option>
+                <option value="Arial Black, Arial, sans-serif">Arial Black</option>
+                <option value="Trebuchet MS, sans-serif">Trebuchet</option>
+                <option value="Georgia, serif">Georgia</option>
+              </select>
+            </div>
+            <div>
+              <label for="textColor">Cor do texto</label>
+              <div class="color-control">
+                <input id="textColor" type="color" value="#ffffff">
+                <span id="textColorValue">#FFFFFF</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="control-group effect-group">
+            <div class="switch-line">
+              <div>
+                <strong>Contorno</strong>
+                <small>Destaca o texto da foto</small>
+              </div>
+              <label class="switch" aria-label="Ativar contorno">
+                <input id="outlineToggle" type="checkbox" checked>
+                <span></span>
+              </label>
+            </div>
+            <div class="outline-options" id="outlineOptions">
+              <div class="segmented color-segmented" role="group" aria-label="Cor do contorno">
+                <button type="button" class="is-active" data-outline-color="#000000"><span class="swatch black"></span> Preto</button>
+                <button type="button" data-outline-color="#ffffff"><span class="swatch white"></span> Branco</button>
+              </div>
+              <label for="outlineWidth">Espessura <output id="outlineWidthValue">12</output></label>
+              <input id="outlineWidth" type="range" min="2" max="28" value="12">
+            </div>
+          </div>
+
+          <div class="control-group switch-line standalone">
+            <div>
+              <strong>Sombra leve</strong>
+              <small>Dá profundidade ao texto</small>
+            </div>
+            <label class="switch" aria-label="Ativar sombra leve">
+              <input id="shadowToggle" type="checkbox">
+              <span></span>
+            </label>
+          </div>
+
+          <div class="control-group optional-feature" id="backgroundFeature">
+            <div class="switch-line">
+              <div>
+                <strong>Remover fundo <em>IA local</em></strong>
+                <small>Processa a foto no seu navegador</small>
+              </div>
+              <label class="switch" aria-label="Remover fundo">
+                <input id="removeBackgroundToggle" type="checkbox">
+                <span></span>
+              </label>
+            </div>
+            <p class="feature-message" id="backgroundMessage" role="status" hidden>
+              Preparando a inteligência artificial…
+            </p>
+          </div>
+
+          <button id="resetSettingsButton" class="reset-settings-button" type="button">
+            <span aria-hidden="true">↺</span> Resetar configurações
+          </button>
+
+          <div class="download-card">
+            <div class="format-row">
+              <span class="field-label">Formato do arquivo</span>
+              <div class="format-options" role="radiogroup" aria-label="Formato do download">
+                <label><input type="radio" name="format" value="png" checked><span>PNG</span></label>
+                <label><input type="radio" name="format" value="webp"><span>WEBP</span></label>
+              </div>
+            </div>
+            <button id="downloadButton" class="primary-button download-button" type="button">
+              <span aria-hidden="true">↓</span> Baixar figurinha
+            </button>
+            <p><span aria-hidden="true">ⓘ</span> Baixe sua figurinha e adicione-a ao WhatsApp pelo menu de figurinhas.</p>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer>
+    <span>StickerLab</span>
+    <p>Feito para criar. Seus arquivos não saem do navegador.</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
